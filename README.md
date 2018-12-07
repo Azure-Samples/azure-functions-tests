@@ -1,57 +1,41 @@
-# Project Name
+# Testing Azure Functions
+This repository includes examples demonstrating how to run tests against a HTTP-triggered and timer-triggered function in both C# and JavaScript. The C# implementation uses [xUnit](https://xunit.github.io/) in [Visual Studio](https://visualstudio.microsoft.com/) and the JavaScript examples use [Jest](https://jestjs.io/) for automated tests and works best with [Visual Studio Code](https://code.visualstudio.com/).
 
-(short, 1-3 sentenced, description of the project)
+There are two functions with associated tests available for both environments, these examples include:
 
-## Features
-
-This project framework provides the following features:
-
-* Feature 1
-* Feature 2
-* ...
-
-## Getting Started
-
-### Prerequisites
-
-(ideally very short, if any)
-
-- OS
-- Library version
-- ...
-
-### Installation
-
-(ideally very short)
-
-- npm install [package name]
-- mvn install
-- ...
-
-### Quickstart
-(Add steps to get up and running quickly)
-
-1. git clone [repository clone url]
-2. cd [respository name]
-3. ...
+- **HTTP-triggered function**: The example demonstrates how to pass in query string parameters to the function. The C# example uses [xUnit's Theory](https://xunit.github.io/docs/getting-started-desktop#write-first-theory) feature to pass in a data set to the HTTP triggered function.
+- **Timer-triggered function**: A non-HTTP triggered function (in the form of a timer-triggered function) is included to demonstrate how to test a function that is not callable via a standard HTTP request.
 
 
-## Demo
+## C# in Visual Studio
 
-A demo app is included to show how to use the project.
+To run the C# tests open the file *csharp-visualstudio\FunctionsTesting.sln* in Visual Studio. After you have restored all the dependencies, build the solution and click **Run All** from the **Test Explorer**. The output from the tests should look something like the following:
 
-To run the demo, follow these steps:
+![Visual Studio Tests](visual-studio-tests.png)
 
-(Add steps to start up the demo)
+To debug your tests, set a breakpoint in your code navigate to the **Test Explorer**. Then, click **Run... > Debug Last Run**.
 
-1.
-2.
-3.
+## JavaScript in VS Code
 
-## Resources
+Open the folder *javascript-vscode* in VS Code. Run `npm install` to install the dependencies and then run `npm test` to run the tests. The output from the tests should look something like the following:
 
-(Any additional resources or related projects)
+![VS Code Tests](vscode-tests.png)
 
-- Link to supporting information
-- Link to similar sample
-- ...
+To debug you tests, set a break point in your code and add the following configuration to *launch.json* before starting a debug session.
+
+```json
+{
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Tests",
+      "program": "${workspaceRoot}\\node_modules\\jest\\bin\\jest.js",
+      "args": [
+          "-i"
+      ],
+      "internalConsoleOptions": "openOnSessionStart"
+    }
+  ]
+}
+```
