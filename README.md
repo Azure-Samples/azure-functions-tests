@@ -1,3 +1,13 @@
+---
+page_type: sample
+languages:
+- csharp
+products:
+- azure
+description: "This repository includes examples demonstrating how to run tests against an HTTP-triggered and timer-triggered function in both C# and JavaScript."
+urlFragment: azure-functions-tests
+---
+
 # Testing Azure Functions
 This repository includes examples demonstrating how to run tests against an HTTP-triggered and timer-triggered function in both C# and JavaScript. The C# implementation uses [xUnit](https://xunit.github.io/) in [Visual Studio](https://visualstudio.microsoft.com/) and the JavaScript examples use [Jest](https://jestjs.io/) for automated tests and works best with [Visual Studio Code](https://code.visualstudio.com/).
 
