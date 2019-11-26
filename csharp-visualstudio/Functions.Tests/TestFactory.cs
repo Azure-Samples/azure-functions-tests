@@ -29,12 +29,12 @@ namespace Functions.Tests
             return qs;
         }
 
-        public static DefaultHttpRequest CreateHttpRequest(string queryStringKey, string queryStringValue, string body = null)
+        public static DefaultHttpRequest CreateHttpRequest(string queryStringKey = null, string queryStringValue = null, string body = null)
         {
-            var request = new DefaultHttpRequest(new DefaultHttpContext())
-            {
-                Query = new QueryCollection(CreateDictionary(queryStringKey, queryStringValue))
-            };
+            var request = new DefaultHttpRequest(new DefaultHttpContext());
+
+            if (!string.IsNullOrEmpty(queryStringKey) && !string.IsNullOrEmpty(queryStringValue))
+                request.Query = new QueryCollection(CreateDictionary(queryStringKey, queryStringValue));
 
             if (body != null)
             {
