@@ -29,15 +29,26 @@ namespace Functions.Tests
             return qs;
         }
 
-        public static DefaultHttpRequest CreateHttpRequest(string queryStringKey, string queryStringValue)
+        public static DefaultHttpRequest CreateHttpRequest(string queryStringKey = null, string queryStringValue = null, string body = null)
         {
-            var request = new DefaultHttpRequest(new DefaultHttpContext())
+            var request = new DefaultHttpRequest(new DefaultHttpContext());
+
+            if (!string.IsNullOrEmpty(queryStringKey) && !string.IsNullOrEmpty(queryStringValue))
+                request.Query = new QueryCollection(CreateDictionary(queryStringKey, queryStringValue));
+
+            if (body != null)
             {
-                Query = new QueryCollection(CreateDictionary(queryStringKey, queryStringValue))
-            };
+                var stream = new MemoryStream();
+                var writer = new StreamWriter(stream);
+                writer.Write(body);
+                writer.Flush();
+                stream.Position = 0;
+                request.Body = stream;
+            }
+
             return request;
         }
-
+        
         public static ILogger CreateLogger(LoggerTypes type = LoggerTypes.Null)
         {
             ILogger logger;
