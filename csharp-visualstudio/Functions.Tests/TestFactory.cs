@@ -38,14 +38,12 @@ namespace Functions.Tests
 
             if (body != null)
             {
-                using (var stream = new MemoryStream())
-                using (var writer = new StreamWriter(stream))
-                {
-                    writer.Write(body);
-                    writer.Flush();
-                    stream.Position = 0;
-                    request.Body = stream;
-                }
+                var stream = new MemoryStream();
+                var writer = new StreamWriter(stream);
+                writer.Write(body);
+                writer.Flush();
+                stream.Position = 0;
+                request.Body = stream;
             }
 
             return request;
