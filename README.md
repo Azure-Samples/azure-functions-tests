@@ -33,7 +33,7 @@ Open the folder *javascript-vscode* in VS Code. Run `npm install` to install the
 
 ![VS Code Tests](vscode-tests.png)
 
-To debug you tests, set a break point in your code and add the following configuration to *launch.json* before starting a debug session.
+To debug your tests, set a break point in your code and add the following configuration to *launch.json* before starting a debug session.
 
 ```json
 {
